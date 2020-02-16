@@ -12,7 +12,7 @@ Hit the button and enjoy two of my all time favorites~!
 
 ## Project Demo
 
-Try [this link](https://windate3411.github.io/memory-card/) for a live demo.
+Try [this link](https://windate3411.github.io/music-player/) for a live demo.
 
 ## Author
 Danny Wang
