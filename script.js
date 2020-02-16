@@ -12,7 +12,7 @@ const title = document.getElementById('title')
 const cover = document.getElementById('cover')
 
 // songs title
-const songs = ['music', 'A Kind of Sorrow']
+const songs = ['The truth that you leave', 'A Kind of Sorrow']
 
 let songIndex = 1
 
@@ -23,7 +23,7 @@ loadSong(songs[songIndex])
 
 function loadSong(song) {
   title.innerText = song
-  audio.src = `${song}.mp3`
+  audio.src = `./musics/${song}.mp3`
 }
 
 // Event listener
@@ -44,7 +44,6 @@ function playSong() {
   musicContainer.classList.add('play')
   playBtn.querySelector('i.fas').classList.remove('fa-play')
   playBtn.querySelector('i.fas').classList.add('fa-pause')
-  console.log('hi')
   audio.play()
 }
 
@@ -85,3 +84,25 @@ function nextSong() {
 
   playSong()
 }
+
+// time update 
+audio.addEventListener('timeupdate', updateProgress)
+
+function updateProgress(e) {
+  const { duration, currentTime } = e.srcElement
+  const progressPercent = (currentTime / duration) * 100
+  progress.style.width = `${progressPercent}%`
+}
+
+// click on progress bar 
+progressContainer.addEventListener('click', setProgress)
+
+function setProgress(e) {
+  const width = this.clientWidth
+  const clickX = e.offsetX
+  const duration = audio.duration
+  audio.currentTime = (clickX / width) * duration
+}
+
+// songs end
+audio.addEventListener('ended', nextSong)
